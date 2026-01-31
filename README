@@ -1,0 +1,3 @@
+runs the app: php ./index.php
+
+run the tests: ./vendor/bin/phpunit
