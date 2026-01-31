@@ -4,7 +4,6 @@ namespace App\User\UseCases;
 
 use App\User\EmailAlreadyTaken;
 use App\User\Entities\User;
-use App\User\UseCases\Contracts\Hasher;
 use App\User\UseCases\Contracts\Persistence;
 
 /**

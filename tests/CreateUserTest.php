@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use App\User\EmailAlreadyTaken;
 use App\User\Entities\User;
 use App\User\UseCases\Contracts\Persistence;
 use PHPUnit\Framework\TestCase;
@@ -18,7 +19,8 @@ class CreateUserTest extends TestCase
         $persistence->method('emailExists')
             ->willReturn(false);
 
-        $useCase = new \App\User\UseCases\Create($persistence);
+        $useCase = $this->createMock(\App\User\UseCases\Create::class);
+
         $user = $useCase->create(
             'Felipe Bona',
             'felipechiodinibona@hotmail.com',
@@ -26,5 +28,24 @@ class CreateUserTest extends TestCase
         );
 
         $this->assertInstanceOf(User::class, $user);
+    }
+
+    public function testCreateUserErrorWithSameEmail()
+    {
+        $this->expectException(EmailAlreadyTaken::class);
+        
+        $persistence = $this->createMock(Persistence::class);
+
+        $persistence->method('emailExists')
+            ->with('felipechiodinibona@hotmail.com')
+            ->willReturn(true);
+
+        $useCase = new \App\User\UseCases\Create($persistence);
+
+        $useCase->create(
+            'Felipe Bona',
+            'felipechiodinibona@hotmail.com',
+            '123456'
+        );
     }
 }
