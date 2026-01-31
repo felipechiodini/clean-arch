@@ -16,10 +16,7 @@ class MySQLPersistence implements Persistence
     }
 
     /**
-     * perist the user
-     * 
-     * @param array $data
-     * @return int
+     * @inheritDoc
      */
     public function save(array $data): int
     {

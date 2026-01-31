@@ -17,7 +17,6 @@ class Create
 {
     /**
      * @param Persistence $persistence
-     * @param Hasher $hasher
      */
     public function __construct(
         protected Persistence $persistence

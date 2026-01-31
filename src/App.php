@@ -10,7 +10,7 @@ use DI\ContainerBuilder;
 
 class App
 {
-    public function run()
+    public function run(): void
     {
         $builder = new ContainerBuilder();
 

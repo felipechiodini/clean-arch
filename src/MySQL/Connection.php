@@ -21,7 +21,7 @@ class Connection
 
     /**
      * @param string $table
-     * @param array $data
+     * @param array<string,mixed> $data
      * 
      * @return bool
      */
@@ -48,24 +48,29 @@ class Connection
      * Insert data and return last inserted id
      * 
      * @param string $table
-     * @param array $data
+     * @param array<string,mixed> $data
+     * @return int
      */
     public function insertGetId(string $table, array $data): int
     {
         $this->insert($table, $data);
 
-        return $this->connection->lastInsertId();
+        $id = $this->connection->lastInsertId();
+
+        return (int) $id;
     }
 
     /**
      * @param string $query
-     * @return array
+     * @param array<string> $data
+     * @return array<string,mixed> $data
      */
     public function select(string $query, array $data): array
     {
         $stmt = $this->connection->prepare($query);
         $stmt->execute($data);
 
+        /** @var array<string,mixed> */
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

@@ -9,7 +9,7 @@ interface Persistence
     /**
      * perist the user
      * 
-     * @param array $data
+     * @param array<string,mixed> $data
      * @return int
      */
     public function save(array $data): int;
