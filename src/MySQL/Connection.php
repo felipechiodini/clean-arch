@@ -73,4 +73,27 @@ class Connection
         /** @var array<string,mixed> */
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    /**
+     * @param string $table
+     * @param array<string,mixed> $data
+     * @param string $whereClause
+     * @param array<string,mixed> $whereData
+     * @return bool
+     */
+    public function update(string $table, array $data, string $whereClause, array $whereData = []): bool
+    {
+        $setParts = [];
+        foreach (array_keys($data) as $column) {
+            $setParts[] = "{$column} = :{$column}";
+        }
+
+        $query = "UPDATE {$table} SET " . implode(', ', $setParts) . " WHERE {$whereClause}";
+
+        $prepared = $this->connection->prepare($query);
+
+        $params = array_merge($data, $whereData);
+
+        return $prepared->execute($params);
+    }
 }

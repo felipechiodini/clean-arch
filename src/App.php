@@ -2,11 +2,14 @@
 
 namespace App;
 
+use App\CircuitBreaker\CircuitBreakerConfig;
+use App\CircuitBreaker\Repository;
 use App\MySQL\Connection;
 use App\User\Infra\MySQLPersistence;
 use App\User\UseCases\Contracts\Persistence;
 use App\User\UseCases\Create;
 use DI\ContainerBuilder;
+use FelipeChiodini\CircuitBreaker\CircuitBreaker;
 
 class App
 {
@@ -28,9 +31,17 @@ class App
 
         $container = $builder->build();
 
-        /** @var Create */
-        $create = $container->get(Create::class);
+        $repository = new Repository($container->get(Connection::class));
 
-        var_dump($create->create('Felipe Bona', 'felipechiodinibona@hotmail.com', '123456'));
+        $config = new CircuitBreakerConfig();
+
+        $circuitBreaker = new CircuitBreaker($repository);
+
+        $e = $circuitBreaker->run(function() {
+            throw new \Exception('KKKKKKKKKKKKKKK');
+            return 'Hello World!';
+        }, $config);
+
+        var_dump($e);
     }
 }

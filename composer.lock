@@ -4,8 +4,52 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "af102bbb0ba2e745700302df7879f3ba",
+    "content-hash": "27374715fc8a0e942e9f6b9924609aa6",
     "packages": [
+        {
+            "name": "felipechiodini/circuit-breaker",
+            "version": "0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/felipechiodini/php-circuit-breaker.git",
+                "reference": "c27334e9b4b77ebef423ed30e745a1b45f48bf47"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/felipechiodini/php-circuit-breaker/zipball/c27334e9b4b77ebef423ed30e745a1b45f48bf47",
+                "reference": "c27334e9b4b77ebef423ed30e745a1b45f48bf47",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "12"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tests\\": "tests/",
+                    "FelipeChiodini\\CircuitBreaker\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Felipe Bona",
+                    "email": "felipechiodinibona@hotmail.com"
+                }
+            ],
+            "description": "Circuit breaker pattern implementation in PHP",
+            "support": {
+                "issues": "https://github.com/felipechiodini/php-circuit-breaker/issues",
+                "source": "https://github.com/felipechiodini/php-circuit-breaker/tree/v0.1.1"
+            },
+            "time": "2026-02-01T03:27:42+00:00"
+        },
         {
             "name": "laravel/serializable-closure",
             "version": "v2.0.8",

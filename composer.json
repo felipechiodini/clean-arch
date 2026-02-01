@@ -17,6 +17,7 @@
         "phpstan/phpstan": "^2.1"
     },
     "require": {
-        "php-di/php-di": "^7.1"
+        "php-di/php-di": "^7.1",
+        "felipechiodini/circuit-breaker": "^0.1.1"
     }
 }
